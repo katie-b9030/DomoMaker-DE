@@ -33,6 +33,10 @@ const AccountSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  name: {
+    type: String,
+    required: true,
+  },
   createdDate: {
     type: Date,
     default: Date.now,
