@@ -22,13 +22,11 @@ const handleSignup = (e) => {
   e.preventDefault();
   helper.hideError();
 
-  const firstName = e.target.querySelector("#first").value;
-  const lastName = e.target.querySelector("#last").value;
   const username = e.target.querySelector("#user").value;
   const pass = e.target.querySelector("#pass").value;
   const pass2 = e.target.querySelector("#pass2").value;
 
-  if (!username || !pass || !pass2 || !firstName || !lastName) {
+  if (!username || !pass || !pass2) {
     helper.handleError("All fields are required!");
     return false;
   }
@@ -42,8 +40,6 @@ const handleSignup = (e) => {
     username,
     pass,
     pass2,
-    firstName,
-    lastName,
   });
 
   return false;
@@ -78,10 +74,6 @@ const SignupWindow = (props) => {
       method="POST"
       className="mainForm"
     >
-      <label htmlFor="firstName">First Name: </label>
-      <input id="first" type="text" name="firstName" placeholder="first name" />
-      <label htmlFor="lastName">Last Name: </label>
-      <input id="last" type="text" name="lastName" placeholder="last name" />
       <label htmlFor="username">Username: </label>
       <input id="user" type="text" name="username" placeholder="username" />
       <label htmlFor="pass">Password: </label>
@@ -102,20 +94,17 @@ const init = () => {
   const loginButton = document.getElementById("loginButton");
   const signupButton = document.getElementById("signupButton");
 
-  const greeting = document.getElementById("greeting");
   const root = createRoot(document.getElementById("content"));
 
   loginButton.addEventListener("click", (e) => {
     e.preventDefault();
     root.render(<LoginWindow />);
-    greeting.innerHTML = "Welcome Back";
     return false;
   });
 
   signupButton.addEventListener("click", (e) => {
     e.preventDefault();
     root.render(<SignupWindow />);
-    greeting.innerHTML = "Hello";
     return false;
   });
 
