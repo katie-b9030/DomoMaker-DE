@@ -43,10 +43,14 @@ const signup = async (req, res) => {
 
   try {
     const hash = await Account.generateHash(pass);
+<<<<<<< HEAD
     const newAccount = new Account({
       username,
       password: hash,
     });
+=======
+    const newAccount = new Account({ username, password: hash });
+>>>>>>> parent of a9b6279 (this doesn't seem to be working but I want to push to have record of it)
     await newAccount.save();
     req.session.account = Account.toAPI(newAccount);
     return res.json({ redirect: '/maker' });
