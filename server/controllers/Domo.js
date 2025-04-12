@@ -12,12 +12,18 @@ const makeDomo = async (req, res) => {
   const domoData = {
     name: req.body.name,
     age: req.body.age,
+    level: req.body.level,
     owner: req.session.account._id,
   };
 
   try {
     const newDomo = new Domo(domoData);
     await newDomo.save();
+    if (domoData.level) {
+      return res
+        .status(201)
+        .json({ name: newDomo.name, age: newDomo.age, level: newDomo.level });
+    }
     return res.status(201).json({ name: newDomo.name, age: newDomo.age });
   } catch (err) {
     console.log(err);

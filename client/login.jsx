@@ -36,7 +36,15 @@ const handleSignup = (e) => {
     return false;
   }
 
+<<<<<<< HEAD
+  helper.sendPost(e.target.action, {
+    username,
+    pass,
+    pass2,
+  });
+=======
   helper.sendPost(e.target.action, { username, pass, pass2 });
+>>>>>>> parent of a9b6279 (this doesn't seem to be working but I want to push to have record of it)
 
   return false;
 };
