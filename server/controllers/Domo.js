@@ -2,7 +2,7 @@ const models = require('../models');
 
 const { Domo } = models;
 
-const makerPage = (req, res) => res.render('app');
+const makerPage = (req, res) => res.render('app', { name: req.session.account.name });
 
 const makeDomo = async (req, res) => {
   if (!req.body.name || !req.body.age) {
@@ -51,5 +51,3 @@ module.exports = {
   makeDomo,
   getDomos,
 };
-
-// comment

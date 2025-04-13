@@ -25,6 +25,8 @@ const handleSignup = (e) => {
   const username = e.target.querySelector("#user").value;
   const pass = e.target.querySelector("#pass").value;
   const pass2 = e.target.querySelector("#pass2").value;
+  const firstName = e.target.querySelector("#first").value;
+  const lastName = e.target.querySelector("#last").value;
 
   if (!username || !pass || !pass2) {
     helper.handleError("All fields are required!");
@@ -36,15 +38,13 @@ const handleSignup = (e) => {
     return false;
   }
 
-<<<<<<< HEAD
   helper.sendPost(e.target.action, {
     username,
     pass,
     pass2,
+    firstName,
+    lastName,
   });
-=======
-  helper.sendPost(e.target.action, { username, pass, pass2 });
->>>>>>> parent of a9b6279 (this doesn't seem to be working but I want to push to have record of it)
 
   return false;
 };
@@ -78,6 +78,10 @@ const SignupWindow = (props) => {
       method="POST"
       className="mainForm"
     >
+      <label htmlFor="firstname">First Name: </label>
+      <input id="first" type="text" name="firstname" placeholder="first name" />
+      <label htmlFor="lastname">Last Name: </label>
+      <input id="last" type="text" name="lastname" placeholder="last name" />
       <label htmlFor="username">Username: </label>
       <input id="user" type="text" name="username" placeholder="username" />
       <label htmlFor="pass">Password: </label>
