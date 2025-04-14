@@ -3,6 +3,7 @@ const mid = require('./middleware');
 
 const router = (app) => {
   app.get('/getDomos', mid.requiresLogin, controllers.Domo.getDomos);
+  app.post('/ageUpDomo', mid.requiresLogin, controllers.Domo.ageUpDomo);
 
   app.get(
     '/login',

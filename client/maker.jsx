@@ -41,14 +41,25 @@ const DomoForm = (props) => {
 const DomoList = (props) => {
   const [domos, setDomos] = useState(props.domos);
 
+  const loadDomosFromServer = async () => {
+    const response = await fetch("/getDomos");
+    const data = await response.json();
+    setDomos(data.domos);
+  };
+
   useEffect(() => {
-    const loadDomosFromServer = async () => {
-      const response = await fetch("/getDomos");
-      const data = await response.json();
-      setDomos(data.domos);
-    };
     loadDomosFromServer();
   }, [props.reloadDomos]);
+
+  const ageUpDomo = async (domoId) => {
+    await fetch("/ageUpDomo", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: domoId }),
+    });
+
+    loadDomosFromServer();
+  };
 
   if (domos.length === 0) {
     return (
@@ -68,7 +79,13 @@ const DomoList = (props) => {
         />
         <h3 className="domoName">Name: {domo.name}</h3>
         <h3 className="domoAge">Age: {domo.age}</h3>
-        <button type="button" id="ageUpButton">Age up Domo</button>
+        <button
+          type="button"
+          id="ageUpButton"
+          onClick={() => ageUpDomo(domo._id)}
+        >
+          Age up Domo
+        </button>
       </div>
     );
   });
